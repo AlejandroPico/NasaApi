@@ -10,8 +10,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.net.*;
 
-import org.json.*;
-
+@SuppressWarnings("serial")
 public class NasaApi extends JFrame {
     // Clave de la API de la NASA
     private static final String API_KEY = "pREcoZO5M8Pt0EPBcaZHQKDPsB6Ht10suiayIKxX";
@@ -55,7 +54,8 @@ public class NasaApi extends JFrame {
 
         // Acción para el botón APOD
         apodButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            @SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
                 new Thread(() -> {
                     String url = "https://api.nasa.gov/planetary/apod?api_key=" + API_KEY;
                     String response = getApiResponse(url);
@@ -87,7 +87,8 @@ public class NasaApi extends JFrame {
 
         // Acción para el botón de fotos del rover
         roverButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            @SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
                 new Thread(() -> {
                     String url = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=" + API_KEY;
                     String response = getApiResponse(url);
@@ -148,7 +149,8 @@ public class NasaApi extends JFrame {
     }
 
     // Método para realizar la consulta HTTP a la API
-    private String getApiResponse(String urlString) {
+    @SuppressWarnings("deprecation")
+	private String getApiResponse(String urlString) {
         StringBuilder result = new StringBuilder();
         try {
             URL url = new URL(urlString);
