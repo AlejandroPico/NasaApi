@@ -62,13 +62,17 @@ public class NasaApi extends JFrame {
                     try {
                         JSONObject json = new JSONObject(response);
                         String mediaType = json.getString("media_type");
+                        String title = json.getString("title");
                         String explanation = json.getString("explanation");
                         if (mediaType.equals("image")) {
                             String imageUrl = json.getString("url");
                             ImageIcon icon = new ImageIcon(new URL(imageUrl));
                             SwingUtilities.invokeLater(() -> {
                                 imageLabel.setIcon(icon);
-                                imageLabel.setToolTipText("<html><p width=\"400px\">" + explanation + "</p></html>");
+                                imageLabel.setToolTipText("<html>"
+                                        + "<h1>" + title + "</h1>"
+                                        + "<p width=\"400px\">" + explanation + "</p>"
+                                        + "</html>");
                                 cardLayout.show(centerPanel, "IMAGE");
                             });
                         } else {
